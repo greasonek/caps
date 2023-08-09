@@ -32,3 +32,4 @@ setInterval(()=> {
   events.emit('pickup', EVENT)
   
 }, 3000);
+module.exports = { pickedUp, inTransit, delivered }
