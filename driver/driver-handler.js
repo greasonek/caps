@@ -14,5 +14,5 @@ function pickup(data) {
   events.emit('delivered', data);
 }
 
-
+module.exports = pickup; 
 
