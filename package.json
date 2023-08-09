@@ -4,8 +4,13 @@
   "description": "## Author: Emily Greason",
   "main": "eventPool.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jest"
   },
   "author": "Emily Greason",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.6.2",
+    "spy": "^1.0.0",
+    "supertest": "^6.3.3"
+  }
 }
