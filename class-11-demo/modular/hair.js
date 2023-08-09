@@ -1,6 +1,6 @@
 'use strict';
 
-const events = require('../modular/eventPool');
+const events = require('./eventPool');
 
 
 events.on('light', gooseBumps);
