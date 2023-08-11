@@ -21,4 +21,5 @@ client.on(events.announcement, (payload) => console.log(payload.message));
 // put this in driver index as well
 client.on(events.pickedUp, (payload) => console.log('the package is in transit', payload.orderId));
 client.on(events.delivered, (payload) => console.log({message: `the package for ${payload.customer} was delviered`}));
+
 module.exports = {client};
