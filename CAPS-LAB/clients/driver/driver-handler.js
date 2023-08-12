@@ -4,6 +4,11 @@
 const {io} = require('socket.io-client');
 const events = require('../socket');
 
+function startDriver(io){
+  console.log('Driver started');
+  io.emit(events.ready);
+  io.on(events.pickup, (payload) => handlePickedUp(payload, io));
+}
 
 const client = io('ws://localhost:3000/caps');
 client.on(events.pickup, (payload) => {
@@ -17,5 +22,7 @@ client.on(events.pickup, (payload) => {
   }, 5000);
 });
 
-module.exports = { client };
+
+
+module.exports = { client, startDriver };
 

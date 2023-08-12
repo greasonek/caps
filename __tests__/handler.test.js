@@ -6,9 +6,9 @@ const {
   handleDelivered,
   handlePickedUp,
   caps,
-} = require('../hub');
+} = require('../CAPS-LAB/hub');
 
-const events = require('../clients/socket');
+const events = require('../CAPS-LAB/clients/socket');
 
 describe('Test the hub functionality', () => {
   test('Starts the socket server and logs that it can connect', () => {
