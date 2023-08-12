@@ -1,13 +1,11 @@
-//LAB 13 STUFF
-
 class Queue {
   constructor() {
     this.queue = [];
   }
-  //the driver queue will hold driver sockets
-  //the package queue will hold payloads
+  // driver queue holds driver socket
+  // package queue holds payload
   enqueue(item) {
-    this.queue.unshift(item); //unshift adds to begining of an array
+    this.queue.unshift(item);
   }
   dequeue() {
     return this.queue.pop();
@@ -18,10 +16,13 @@ class Queue {
 }
 
 module.exports = { 
+  Queue,
+  chance,
   pickup: 'pickupReady',
   pickedUp: 'driverPickedUp',
   inTransit: 'inTransit',
-  delivered: 'packageDelivered',
-  announcement: 'announcement',
+  delivered: 'Delivered',
   ready: 'ready',
+  received: 'received',
+  getAll: 'getAll',
 };

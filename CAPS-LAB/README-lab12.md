@@ -39,10 +39,9 @@
     - ~~create payload object~~
     - ~~emit message to CAPS server for pickup~~
     - ~~setInterval()~~
-  - ~~listen for delivered and console.log(thankyou for your order <customer-name>)~~
+  - ~~listen for delivered and console.log(thankyou for your order customer-name>)~~
 - **Driver Application**
   - ~~listen for events from server: pickup - simulate all driver behaviors~~
   - ~~simulate and emit payloads upon receiving pickup event:~~
     - ~~in-transit log 'picking up payload.id'~~
     - ~~delivered - emit delivered event to CAPS server with payload~~
-    

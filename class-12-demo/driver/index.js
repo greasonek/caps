@@ -18,4 +18,10 @@ client.on(events.ready, (payload) => {
   }, 5000);
 });
 
+// this function is not finished?
+function startDriver(io){
+  console.log('driver is started');
+  io.emit(events.ready);
+  io.emit(events.pickup, (payload) => handlePickup(payload, io));
+}
 module.exports = {client};

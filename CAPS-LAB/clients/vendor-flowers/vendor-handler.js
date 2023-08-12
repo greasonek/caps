@@ -9,22 +9,37 @@ const events = require('../socket');
 
 const payload = {
   customer: 'Emily',
-  storename: '1-206-flowers',
+  storename: '1-206-Flowers',
   orderId: 5,
-  address: 'Olympia, WA'
+  address: 'Olympia WA',
 };
+
+const newPayload = {
+  event: 'pickup',
+  messageId: order.orderId,
+  storename: '1-206-Flowers',
+  order: payload,
+}
 
 // client.emit(events.pickup, payload);
 client.on(events.pickedUp, (payload) => console.log(`VENDOR: I see order ${payload.orderId} was picked up`));
 client.on(events.delivered, (payload) => console.log({message:`VENDOR: Thank you for delivering order # ${payload.orderId}`}));
 
+function confirmDelivery(orderId) {
+  console.log('Order was received', orderId);
+}
+function startVendor(events) {
+  console.log('Vendor started');
+  events.on(events.delivered, confirmDelivery);
+  events.emit('register', payload);
+}
 
 setInterval(()=> {
   console.log('--------------------------');
   let EVENT = {
     time: new Date().getTime(),
     payload: {
-      store: '1-206-flowers',
+      store: 'Acme Widgets',
       orderId: Math.ceil(Math.random() * 100),
       customer: 'Emily',
       address: 'Olympia, WA',
@@ -35,4 +50,4 @@ setInterval(()=> {
 }, 3000);
 
 
-module.exports = { client };
+module.exports = { client, startVendor, payload };
