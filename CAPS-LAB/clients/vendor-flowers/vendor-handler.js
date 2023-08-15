@@ -7,31 +7,38 @@ const client = io('ws://localhost:3000/caps');
 const events = require('../socket');
 
 
-const payload = {
-  customer: 'Emily',
-  storename: '1-206-Flowers',
-  orderId: 5,
-  address: 'Olympia WA',
-};
+// function sendPickup(events) {
+  const payload = {
+    customer: 'Emily',
+    storename: '1-206-Flowers',
+    orderId: 5,
+    address: 'Olympia WA',
+  };
+  
+  const newPayload = {
+    event: 'pickup',
+    messageId: payload.orderId,
+    storename: '1-206-Flowers',
+    order: payload,
+  }
+  console.log('Vendor asking for pickup!', payload);
+  client.emit(events.pickedUp, newPayload);
 
-const newPayload = {
-  event: 'pickup',
-  messageId: order.orderId,
-  storename: '1-206-Flowers',
-  order: payload,
-}
+
 
 // client.emit(events.pickup, payload);
-client.on(events.pickedUp, (payload) => console.log(`VENDOR: I see order ${payload.orderId} was picked up`));
-client.on(events.delivered, (payload) => console.log({message:`VENDOR: Thank you for delivering order # ${payload.orderId}`}));
+client.on(events.pickedUp, (newPayload) => console.log(`VENDOR: I see order ${newPayload.messageId} was picked up`));
+client.on(events.delivered, (newPayload) => console.log({message:`VENDOR: Thank you for delivering order # ${newPayload.messageId}`}));
+client.on(events.getAll, (newPayload) => console.log());
 
-function confirmDelivery(orderId) {
-  console.log('Order was received', orderId);
+function confirmDelivery(newPayload, client) {
+  console.log('Order was received', newPayload.messageId);
+  client.emit('Received', newPayload);
 }
 function startVendor(events) {
   console.log('Vendor started');
-  events.on(events.delivered, confirmDelivery);
-  events.emit('register', payload);
+  events.emit('getAll', '1-206-Flowers');
+  events.on(events.delivered,(newPayload) => confirmDelivery(newPayload, client));
 }
 
 setInterval(()=> {
@@ -39,7 +46,7 @@ setInterval(()=> {
   let EVENT = {
     time: new Date().getTime(),
     payload: {
-      store: 'Acme Widgets',
+      storename: '1-206-Flowers',
       orderId: Math.ceil(Math.random() * 100),
       customer: 'Emily',
       address: 'Olympia, WA',
