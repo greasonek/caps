@@ -7,18 +7,18 @@ const events = require('../socket');
 function startDriver(io){
   console.log('Driver started');
   io.emit(events.ready);
-  io.on(events.pickup, (payload) => handlePickedUp(payload, io));
+  io.on(events.pickup, (newPayload) => handlePickedUp(newPayload, io));
 }
 
 const client = io('ws://localhost:3000/caps');
-client.on(events.pickup, (payload) => {
-  console.log('VENDOR: I have an order to be picked up', payload);
+client.on(events.pickup, (newPayload) => {
+  console.log('VENDOR: I have an order to be picked up', newPayload.messageId);
   setTimeout(() => {
-    client.emit(events.inTransit, payload);
+    client.emit(events.inTransit, newPayload);
   }, 2000);
   setTimeout(() => {
     console.log('VENDOR: Thank you for delivering');
-    client.emit(events.delivered, payload);
+    client.emit(events.delivered, newPayload.messageId);
   }, 5000);
 });
 

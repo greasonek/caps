@@ -13,11 +13,11 @@ class Queue {
   isEmpty() {
     return this.queue.length === 0;
   }
+  
 }
 
 module.exports = { 
   Queue,
-  chance,
   pickup: 'pickupReady',
   pickedUp: 'driverPickedUp',
   inTransit: 'inTransit',

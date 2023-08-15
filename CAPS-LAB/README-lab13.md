@@ -12,6 +12,9 @@
 - Tests
   - npm test handler.test.js
 
+- UML
+![lab-13-UML](/Screenshot%202023-08-14%20at%205.24.43%20PM.png)
+
 ### CLASS 13 NOTES
 
 - use the chance library to create random orders
@@ -22,6 +25,12 @@ const chance = require('chance')();
 - do the same thing for vendors if you want 2+ vendors
 - changing pickup function so will need to fix some tests that utilize the pickup function
 - pickup test
+
+- on getAll --> hsave socket based on store --> ub checks the vendor queue, sends any orders in the queue and clears it out
+
+- vendor emits pickup and send the order, hub on pickup emits pickup, on pick up, driver emits in transit
+
+- on delivered, hub emits delivered, when vendor receives delivered, emits received
 
 ### TO DO
 
