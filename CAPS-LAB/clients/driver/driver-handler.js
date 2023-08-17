@@ -17,7 +17,7 @@ client.on(events.pickup, (newPayload) => {
     client.emit(events.inTransit, newPayload);
   }, 2000);
   setTimeout(() => {
-    console.log('VENDOR: Thank you for delivering');
+    console.log('VENDOR: Thank you for delivering', newPayload.messageId);
     client.emit(events.delivered, newPayload.messageId);
   }, 5000);
 });

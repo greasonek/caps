@@ -4,7 +4,7 @@
 const {io} = require('socket.io-client');
 
 const client = io('ws://localhost:3000/caps');
-const events = require('../socket');
+const events = require('../clients/driver');
 
 // function sendPickup(events) {
   const payload = {
