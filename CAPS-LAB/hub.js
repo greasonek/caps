@@ -60,7 +60,7 @@ function handleInTransit(newPayload) {
 }
 
 function handleDelivered(newPayload) {
-  console.log('VENDOR: Thank you for delivering', newPayload.messageId);
+  console.log('VENDOR: Thank you for delivering', newPayload);
   if(newPayload.storename === '1-206-Flowers'){
     // put in flowers queue
     flowersDeliveredQueue.enqueue(newPayload);
@@ -75,10 +75,10 @@ function handleDelivered(newPayload) {
 
 function handleReceived(newPayload) {
   console.log('Vendor has received that order', newPayload.messageId);
-  if(newPayload.clientId === '1-206-Flowers'){
+  if(newPayload.storename === '1-206-Flowers'){
     // put in flowers queue
     flowersDeliveredQueue.dequeue();
-  } if (newPayload.clientId === 'Acme Widgets'){
+  } if (newPayload.storename === 'Acme Widgets'){
     // put in widget queue
     acmeWidgetsDeliveredQueue.dequeue();
   } 
